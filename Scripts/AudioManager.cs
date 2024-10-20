@@ -51,4 +51,20 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(eagleDieSound);
     }
+
+    public void StopAllAudio()
+    {
+        backgroundSource.Stop();
+        sfxSource.Stop();
+    }
+
+    public void PauseBgMusic()
+    {
+        backgroundSource.Pause();
+    }
+
+    public void UnPauseBgMusic()
+    {
+        backgroundSource.UnPause();
+    }
 }

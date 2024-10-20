@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AOT;
 using GamePix;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -108,14 +109,14 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         //ads gamepics
-        Gpx.Ads.InterstitialAd(OnInterstitalAdSuccess);
+        Gpx.Ads.InterstitialAd(InterstitialAd);
     }
 
     //ads gamepics
-    [AOT.MonoPInvokeCallback(typeof(Gpx.gpxCallback))]
-    public static void OnInterstitalAdSuccess()
+    [MonoPInvokeCallback(typeof(Gpx.gpxCallback))]
+    private static void InterstitialAd()
     {
-        Gpx.Log("SUCCESS");
+        // Any actions after interstitial Ad
     }
     //
 
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour
     {
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
-        AudioManager.Instance.sfxSource.Stop();
+        AudioManager.Instance.StopAllAudio();
         DisCursor();
     }
 

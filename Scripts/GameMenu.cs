@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AOT;
 using GamePix;
 using TMPro;
 using UnityEngine;
@@ -21,9 +22,6 @@ public class GameMenu : MonoBehaviour
 
     void Start()
     {
-        //ads gamepics
-        Gpx.Ads.InterstitialAd(OnInterstitalAdSuccess);
-
         if (PlayerPrefs.HasKey("musicVolume"))
         {
             LoadVolume();
@@ -35,10 +33,10 @@ public class GameMenu : MonoBehaviour
     }
 
     //ads gamepics
-    [AOT.MonoPInvokeCallback(typeof(Gpx.gpxCallback))]
-    public static void OnInterstitalAdSuccess()
+    [MonoPInvokeCallback(typeof(Gpx.gpxCallback))]
+    private static void InterstitialAd()
     {
-        Gpx.Log("SUCCESS");
+        // Any actions after interstitial Ad
     }
     //
 
@@ -55,6 +53,15 @@ public class GameMenu : MonoBehaviour
 
     public void OpenUpgrade(bool c)
     {
+        if (c)
+        {
+            AudioManager.Instance.PauseBgMusic();
+            //ads gamepics
+            Gpx.Ads.InterstitialAd(InterstitialAd);
+        }
+        else
+            AudioManager.Instance.UnPauseBgMusic();
+
         upgrade.SetActive(c);
     }
 
