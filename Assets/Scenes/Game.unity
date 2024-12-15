@@ -2563,6 +2563,7 @@ GameObject:
   - component: {fileID: 1222861215}
   - component: {fileID: 1222861214}
   - component: {fileID: 1222861213}
+  - component: {fileID: 1222861216}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -2582,7 +2583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a864edcde8b006438c6142a306c68e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefabs: {fileID: 3657423950291028349, guid: 691f035cafeadeb47ac9562629e90a53, type: 3}
+  bulletPool: {fileID: 1222861216}
   firePoint: {fileID: 1350515740}
   fireRate: 0.7
   maxAmmo: 30
@@ -2654,6 +2655,20 @@ Transform:
   - {fileID: 1350515740}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1222861216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222861212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c7978bc04023c41a330a16c25061e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefabs: {fileID: 3657423950291028349, guid: 691f035cafeadeb47ac9562629e90a53, type: 3}
+  sizePool: 30
 --- !u!1 &1256381327
 GameObject:
   m_ObjectHideFlags: 0

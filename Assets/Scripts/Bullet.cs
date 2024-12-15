@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Eagle")
         {
-            Destroy(gameObject);
+            FindObjectOfType<ObjectPool>().ReturnObject(gameObject);
         }
     }
 }

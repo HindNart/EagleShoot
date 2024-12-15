@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public GameObject bulletPrefabs;
+    public ObjectPool bulletPool;
     public Transform firePoint;
     public float fireRate = 0.8f;
     private float nextFireTime;
@@ -41,17 +41,16 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
-        if (bulletPrefabs != null)
+        GameObject bullet = bulletPool.GetObject();
+        bullet.transform.position = firePoint.position;
+        bullet.transform.rotation = firePoint.rotation;
+        AudioManager.Instance.PlayShootSound();
+        GameManager.Instance.UpdateBullet();
+        currentAmmo--;
+        if (currentAmmo <= 0)
         {
-            Instantiate(bulletPrefabs, firePoint.position, firePoint.rotation);
-            AudioManager.Instance.PlayShootSound();
-            GameManager.Instance.UpdateBullet();
-            currentAmmo--;
-            if (currentAmmo <= 0)
-            {
-                GameManager.Instance.Ammo(true);
-                Debug.Log("Hết đạn !!!");
-            }
+            GameManager.Instance.Ammo(true);
+            Debug.Log("Hết đạn !!!");
         }
     }
 
